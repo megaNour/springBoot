@@ -7,16 +7,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.avisto.spring.boot.services.DatabaseAccountService;
+import com.avisto.spring.boot.services.RiskAssessor;
 
 @SpringBootApplication
 @RestController
 public class Application {
     
+    private final DatabaseAccountService service;
+    
     @Autowired
-    private DatabaseAccountService service;
+    Application(DatabaseAccountService paramService) {
+        service = paramService;
+    }
     
     @RequestMapping("/")
-    public String home() {
+    public String home(DatabaseAccountService paramService) {
         System.out.println("Bingo ! Bango !");
         return "Hello World!";
     }
